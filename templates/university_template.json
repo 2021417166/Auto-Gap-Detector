@@ -1,0 +1,35 @@
+{
+  "requiredSections": [
+    "History",
+    "Academics",
+    "Campus",
+    "Notable Alumni",
+    "Research Output",
+    "Administration"
+  ],
+  "sections": [
+    {
+      "title": "Notable Alumni",
+      "entities": [
+        "President",
+        "Minister",
+        "Scientist",
+        "Author",
+        "CEO"
+      ],
+      "minWords": 150
+    },
+    {
+      "title": "Research Output",
+      "entities": [
+        "Journal",
+        "Publication",
+        "Patent",
+        "Conference",
+        "Research Center"
+      ],
+      "minWords": 200
+    }
+  ],
+  "minReferences": 15
+}

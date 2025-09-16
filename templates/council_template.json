@@ -1,0 +1,35 @@
+{
+  "requiredSections": [
+    "History",
+    "Geography",
+    "Demographics",
+    "Administration",
+    "Economy",
+    "Infrastructure"
+  ],
+  "sections": [
+    {
+      "title": "Demographics",
+      "entities": [
+        "Population",
+        "Census",
+        "Ethnic Groups",
+        "Languages",
+        "Religion"
+      ],
+      "minWords": 120
+    },
+    {
+      "title": "Economy",
+      "entities": [
+        "GDP",
+        "Industries",
+        "Employment",
+        "Agriculture",
+        "Mining"
+      ],
+      "minWords": 180
+    }
+  ],
+  "minReferences": 12
+}

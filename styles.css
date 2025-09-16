@@ -1,0 +1,119 @@
+.gap-highlight {
+  background-color: #ffeb3b80;
+  position: relative;
+  display: inline-block;
+}
+
+.gap-tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 1000;
+  display: none;
+  font-size: 14px;
+}
+
+.gap-highlight:hover .gap-tooltip {
+  display: block;
+}
+
+#gap-detector-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 10000;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.gap-detector-header {
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gap-detector-content {
+  padding: 15px;
+}
+
+.completeness-score {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.score-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.high-score { color: #4caf50; }
+.medium-score { color: #ff9800; }
+.low-score { color: #f44336; }
+
+.gap-item {
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.gap-item.high { background: #ffe0e0; border-left: 4px solid #d32f2f; }
+.gap-item.medium { background: #fff8e1; border-left: 4px solid #ff9800; }
+.gap-item.low { background: #e0f7fa; border-left: 4px solid #4caf50; }
+
+.suggestion-item {
+  margin: 5px 0;
+  padding: 5px;
+  background: #e3f2fd;
+  border-radius: 4px;
+  border-left: 4px solid #1976d2;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 5px 2px;
+  font-size: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2c5aa0 0%, #1e3d6f 100%);
+  color: #fff;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px rgba(44,90,160,0.08);
+  outline: none;
+}
+button:hover {
+  background: linear-gradient(135deg, #1e3d6f 0%, #2c5aa0 100%);
+}
+
+.missing-section-marker {
+  background: #fffde7;
+  border: 2px dashed #1976d2;
+  color: #1976d2;
+  padding: 6px 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 15px;
+  position: relative;
+  z-index: 9999;
+}
