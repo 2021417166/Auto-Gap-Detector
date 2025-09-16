@@ -1,4 +1,12 @@
 // Content script for Auto Gap Detector
+// Import the API key from config.local.js (not committed)
+let HF_API_KEY = '';
+try {
+  HF_API_KEY = require('./config.local.js').HF_API_KEY;
+} catch (e) {
+  HF_API_KEY = '';
+}
+
 class GapDetector {
   constructor() {
     this.goldStandardTemplates = {
@@ -20,7 +28,7 @@ class GapDetector {
       }
     };
 
-  this.hfApiKey = 'YOUR_HF_API_KEY_HERE'; // Insert your Hugging Face API key at runtime or via environment variable
+    this.hfApiKey = HF_API_KEY;
     this.hfModel = 'HuggingFaceH4/zephyr-7b-beta'; // Instruction-following model
 
     this.zambianKeywords = [
@@ -92,6 +100,16 @@ class GapDetector {
       }, 1200);
     });
     document.getElementById('edit-wiki-btn').addEventListener('click', () => {
+      // Show last analysis results in the panel (if available)
+      try {
+        const last = localStorage.getItem('lastGapAnalysis');
+        if (last) {
+          const parsed = JSON.parse(last);
+          if (parsed && parsed.analysis) {
+            this.updatePanel(parsed.analysis);
+          }
+        }
+      } catch (e) { /* ignore */ }
       const editUrl = window.location.href.replace(/\/wiki\/([^#?]+)/, '/w/index.php?title=$1&action=edit');
       window.open(editUrl, '_blank');
     });
@@ -176,7 +194,14 @@ ${pageContent.text}`;
       this.updatePanel(analysis);
       this.highlightGaps(analysis.gaps || []);
       this.saveAnalysis(pageTitle, analysis);
-      // Optionally, display new_articles in the UI (future step)
+      // Persist last analysis for this article in localStorage
+      try {
+        localStorage.setItem('lastGapAnalysis', JSON.stringify({
+          page: pageTitle,
+          url: window.location.href,
+          analysis
+        }));
+      } catch (e) { /* ignore quota errors */ }
     } catch (err) {
       this.updatePanel({
         score: 'N/A',
